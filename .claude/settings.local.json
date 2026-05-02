@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__claude_ai_Figma__get_design_context",
+      "Bash(curl -s \"https://www.figma.com/api/mcp/asset/b3f330fe-cb8b-43e7-9809-03de5414e2b7\" -o wordmark-1.svg)",
+      "Bash(curl -s \"https://www.figma.com/api/mcp/asset/b6983f2d-de1e-4f9a-a478-8cb77a14df24\" -o wordmark-2.svg)",
+      "Bash(curl -s \"https://www.figma.com/api/mcp/asset/1a2a42e6-6228-48f7-8829-7bdb9c586799\" -o wordmark-3.svg)",
+      "Bash(curl -s \"https://www.figma.com/api/mcp/asset/fac3fc2b-720c-4fc7-8039-ed10b2f0bab2\" -o wordmark-4.svg)",
+      "Bash(curl -s \"https://www.figma.com/api/mcp/asset/25c6c3e1-2147-4fe7-93af-1806a63a7e99\" -o wordmark-5.svg)",
+      "Bash(curl -s \"https://www.figma.com/api/mcp/asset/ff58b7a9-dfd9-4adb-8d52-493b4fe312a2\" -o /Users/evan/Documents/nusantics-design-documentation/src/assets/hero/color-hero-illustration.png)",
+      "Bash(curl -s \"https://www.figma.com/api/mcp/asset/c9a51c5d-1ce0-4d0f-bb63-ec018acd3545\" -o /Users/evan/Documents/nusantics-design-documentation/src/assets/hero/color-hero-bg.png)",
+      "Bash(file /Users/evan/Documents/nusantics-design-documentation/src/assets/hero/*.png)",
+      "mcp__claude_ai_Figma__get_variable_defs",
+      "mcp__claude_ai_Figma__get_libraries",
+      "mcp__claude_ai_Figma__search_design_system",
+      "Bash(npm run *)",
+      "mcp__claude_ai_Figma__get_metadata",
+      "mcp__claude_ai_Figma__use_figma",
+      "mcp__claude_ai_Figma__get_code_connect_suggestions",
+      "mcp__claude_ai_Figma__get_context_for_code_connect",
+      "Bash(npx tsc *)",
+      "Bash(./node_modules/.bin/tsc --noEmit)",
+      "Bash(node_modules/.bin/tsc --noEmit)",
+      "mcp__claude_ai_Figma__get_screenshot"
+    ]
+  }
+}
