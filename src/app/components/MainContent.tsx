@@ -26,6 +26,21 @@ import { PaginationSection } from './PaginationSection';
 import { DialogSection } from './DialogSection';
 import { StepperSection } from './StepperSection';
 import { TableSection } from './TableSection';
+import { SpinnerSection } from './SpinnerSection';
+import { TextLinkSection } from './TextLinkSection';
+import { BreadcrumbSection } from './BreadcrumbSection';
+import { ToastSection } from './ToastSection';
+import { AlertDialogSection } from './AlertDialogSection';
+import { PopoverSection } from './PopoverSection';
+import { SheetSection } from './SheetSection';
+import { EmptyStateSection } from './EmptyStateSection';
+import { NavbarSection } from './NavbarSection';
+import { DatePickerSection } from './DatePickerSection';
+import { CardMetricSection } from './CardMetricSection';
+import { InfoCardSection } from './InfoCardSection';
+import { ComparisonTableSection } from './ComparisonTableSection';
+import { CarouselSection } from './CarouselSection';
+import { ToolbarFilterSection } from './ToolbarFilterSection';
 
 interface MainContentProps {
   activeSection: string;
@@ -67,6 +82,21 @@ export function MainContent({ activeSection, isCollapsed }: MainContentProps) {
       case 'dialog':            return <DialogSection />;
       case 'stepper':           return <StepperSection />;
       case 'table':             return <TableSection />;
+      case 'spinner':           return <SpinnerSection />;
+      case 'text-link':         return <TextLinkSection />;
+      case 'breadcrumb':        return <BreadcrumbSection />;
+      case 'toast':             return <ToastSection />;
+      case 'alert-dialog':      return <AlertDialogSection />;
+      case 'popover':           return <PopoverSection />;
+      case 'sheet':             return <SheetSection />;
+      case 'empty-state':       return <EmptyStateSection />;
+      case 'navbar':            return <NavbarSection />;
+      case 'date-picker':       return <DatePickerSection />;
+      case 'card-metric':       return <CardMetricSection />;
+      case 'info-card':         return <InfoCardSection />;
+      case 'comparison-table':  return <ComparisonTableSection />;
+      case 'carousel':          return <CarouselSection />;
+      case 'toolbar-filter':    return <ToolbarFilterSection />;
       case 'components-overview':
         return (
           <div style={{ padding: '40px 48px' }}>
@@ -86,14 +116,16 @@ export function MainContent({ activeSection, isCollapsed }: MainContentProps) {
               lineHeight: '1.6',
               marginBottom: 32,
             }}>
-              The Nusantics design system includes 22 production-ready components. Select any component from the sidebar to view its documentation and interactive examples.
+              The Nusantics design system includes 37 production-ready components. Select any component from the sidebar to view its documentation and interactive examples.
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 12 }}>
               {[
-                'Accordion', 'Alert', 'Avatar', 'Badge', 'Button', 'Card',
-                'Checkbox', 'Dialog', 'Divider', 'Input', 'Input OTP', 'Menu',
-                'Pagination', 'Progress Bar', 'Radio Button', 'Select',
-                'Stepper', 'Switch', 'Table', 'Tabs', 'Tooltip',
+                'Accordion', 'Alert', 'Alert Dialog', 'Avatar', 'Badge', 'Breadcrumb',
+                'Button', 'Card', 'Card Metric', 'Carousel', 'Checkbox', 'Comparison Table',
+                'Date Picker', 'Dialog', 'Divider', 'Empty State', 'Info Card', 'Input',
+                'Input OTP', 'Menu', 'Navbar', 'Pagination', 'Popover', 'Progress Bar',
+                'Radio Button', 'Select', 'Sheet', 'Spinner', 'Stepper', 'Switch',
+                'Table', 'Tabs', 'Text Link', 'Toast', 'Toolbar Filter', 'Tooltip',
               ].map(name => (
                 <div key={name} style={{
                   padding: '12px 16px',
