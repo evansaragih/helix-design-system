@@ -1,0 +1,153 @@
+import { forwardRef, useEffect, useRef } from 'react';
+import { AlertTriangle, Trash2, Info } from 'lucide-react';
+import { Button } from './Button';
+
+export type AlertDialogVariant = 'default' | 'destructive' | 'info';
+
+export interface AlertDialogAction {
+  label: string;
+  onClick: () => void;
+  loading?: boolean;
+}
+
+export interface AlertDialogProps {
+  open: boolean;
+  variant?: AlertDialogVariant;
+  title: string;
+  description?: string;
+  /** Custom icon — defaults to variant icon */
+  icon?: React.ReactNode;
+  confirmAction: AlertDialogAction;
+  cancelAction?: AlertDialogAction;
+  onClose: () => void;
+  /** 'sm' condenses the layout */
+  size?: 'sm' | 'md';
+}
+
+const VARIANT_META: Record<AlertDialogVariant, { iconBg: string; iconColor: string; Icon: React.ComponentType<{ size?: number }> }> = {
+  default:     { iconBg: 'var(--color-brand-primary-ghost-hover, #FEF2E9)', iconColor: 'var(--color-brand-primary, #F57E20)', Icon: Info },
+  destructive: { iconBg: '#FEE2E2', iconColor: 'var(--color-destructive, #DC2626)', Icon: Trash2 },
+  info:        { iconBg: '#EBF2FE', iconColor: 'var(--color-text-info, #014CC5)', Icon: AlertTriangle },
+};
+
+export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(({
+  open,
+  variant = 'default',
+  title,
+  description,
+  icon,
+  confirmAction,
+  cancelAction,
+  onClose,
+  size = 'md',
+}, ref) => {
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const vm = VARIANT_META[variant];
+  const IconEl = vm.Icon;
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open, onClose]);
+
+  if (!open) return null;
+
+  return (
+    <div
+      ref={overlayRef}
+      onClick={(e) => { if (e.target === overlayRef.current) onClose(); }}
+      style={{
+        position: 'fixed', inset: 0, zIndex: 1000,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        backgroundColor: 'rgba(0,0,0,0.4)',
+        backdropFilter: 'blur(2px)',
+      }}
+    >
+      <div
+        ref={ref}
+        role="alertdialog"
+        aria-modal="true"
+        aria-labelledby="alert-dialog-title"
+        style={{
+          backgroundColor: '#FFFFFF',
+          borderRadius: 16,
+          boxShadow: '0px 24px 48px rgba(0,0,0,0.12)',
+          width: '100%',
+          maxWidth: size === 'sm' ? 360 : 440,
+          margin: '0 16px',
+          overflow: 'hidden',
+        }}
+      >
+        <div style={{ padding: size === 'sm' ? '24px 24px 0' : '32px 32px 0' }}>
+          {/* Icon */}
+          <div style={{
+            width: 48, height: 48, borderRadius: 12,
+            backgroundColor: vm.iconBg,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            marginBottom: 20,
+          }}>
+            <span style={{ color: vm.iconColor }}>
+              {icon ?? <IconEl size={22} />}
+            </span>
+          </div>
+
+          {/* Title */}
+          <h2
+            id="alert-dialog-title"
+            style={{
+              margin: '0 0 8px',
+              fontFamily: 'var(--font-family-heading, Rubik, sans-serif)',
+              fontWeight: 600,
+              fontSize: size === 'sm' ? 16 : 18,
+              lineHeight: size === 'sm' ? '24px' : '27px',
+              color: 'var(--color-text-primary, #14141E)',
+            }}
+          >
+            {title}
+          </h2>
+
+          {description && (
+            <p style={{
+              margin: 0,
+              fontFamily: 'Rubik, sans-serif',
+              fontWeight: 400,
+              fontSize: 14,
+              lineHeight: '21px',
+              color: 'var(--color-text-secondary, #49494A)',
+            }}>
+              {description}
+            </p>
+          )}
+        </div>
+
+        {/* Actions */}
+        <div style={{
+          display: 'flex', gap: 8, flexDirection: 'row-reverse',
+          padding: size === 'sm' ? '20px 24px 24px' : '24px 32px 32px',
+        }}>
+          <Button
+            variant={variant === 'destructive' ? 'destructive' : 'primary'}
+            size="sm"
+            loading={confirmAction.loading}
+            onClick={confirmAction.onClick}
+          >
+            {confirmAction.label}
+          </Button>
+          {cancelAction && (
+            <Button
+              variant="neutral"
+              size="sm"
+              onClick={cancelAction.onClick}
+            >
+              {cancelAction.label}
+            </Button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+});
+
+AlertDialog.displayName = 'AlertDialog';

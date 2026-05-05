@@ -1,0 +1,158 @@
+import { forwardRef, useEffect } from 'react';
+import { X } from 'lucide-react';
+
+export type SheetSide = 'right' | 'left' | 'top' | 'bottom';
+
+export interface SheetProps {
+  open: boolean;
+  onClose: () => void;
+  side?: SheetSide;
+  title?: string;
+  description?: string;
+  children?: React.ReactNode;
+  footer?: React.ReactNode;
+  /** Width for left/right sheets, height for top/bottom */
+  size?: number | string;
+  closeOnOverlayClick?: boolean;
+}
+
+const SIDE_STYLES: Record<SheetSide, React.CSSProperties> = {
+  right:  { right: 0, top: 0, bottom: 0, width: 400 },
+  left:   { left: 0, top: 0, bottom: 0, width: 400 },
+  top:    { top: 0, left: 0, right: 0, height: 320 },
+  bottom: { bottom: 0, left: 0, right: 0, height: 320 },
+};
+
+export const Sheet = forwardRef<HTMLDivElement, SheetProps>(({
+  open,
+  onClose,
+  side = 'right',
+  title,
+  description,
+  children,
+  footer,
+  size,
+  closeOnOverlayClick = true,
+}, ref) => {
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open, onClose]);
+
+  if (!open) return null;
+
+  const sideStyle = { ...SIDE_STYLES[side] };
+  if (size !== undefined) {
+    if (side === 'left' || side === 'right') sideStyle.width = size;
+    else sideStyle.height = size;
+  }
+
+  const borderRadius =
+    side === 'right'  ? '16px 0 0 16px' :
+    side === 'left'   ? '0 16px 16px 0' :
+    side === 'top'    ? '0 0 16px 16px' :
+                        '16px 16px 0 0';
+
+  return (
+    <div
+      onClick={closeOnOverlayClick ? (e) => { if (e.target === e.currentTarget) onClose(); } : undefined}
+      style={{
+        position: 'fixed', inset: 0, zIndex: 900,
+        backgroundColor: 'rgba(0,0,0,0.4)',
+        backdropFilter: 'blur(2px)',
+      }}
+    >
+      <div
+        ref={ref}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={title ? 'sheet-title' : undefined}
+        style={{
+          position: 'fixed',
+          backgroundColor: '#FFFFFF',
+          boxShadow: '0px 24px 48px rgba(0,0,0,0.12)',
+          borderRadius,
+          display: 'flex',
+          flexDirection: 'column',
+          ...sideStyle,
+        }}
+      >
+        {/* Header */}
+        <div style={{
+          display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between',
+          padding: '24px 24px 16px',
+          borderBottom: (children || footer) ? '1px solid var(--color-stroke-subtle, #EEEEEE)' : 'none',
+          flexShrink: 0,
+        }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            {title && (
+              <h2 id="sheet-title" style={{
+                margin: 0,
+                fontFamily: 'var(--font-family-heading, Rubik, sans-serif)',
+                fontWeight: 600,
+                fontSize: 18,
+                lineHeight: '27px',
+                color: 'var(--color-text-primary, #14141E)',
+              }}>
+                {title}
+              </h2>
+            )}
+            {description && (
+              <p style={{
+                margin: title ? '4px 0 0' : 0,
+                fontFamily: 'Rubik, sans-serif',
+                fontWeight: 400,
+                fontSize: 14,
+                lineHeight: '21px',
+                color: 'var(--color-text-secondary, #49494A)',
+              }}>
+                {description}
+              </p>
+            )}
+          </div>
+          <button
+            onClick={onClose}
+            aria-label="Close"
+            style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              width: 32, height: 32, flexShrink: 0,
+              border: '1px solid var(--color-stroke-subtle, #EEEEEE)',
+              borderRadius: 8,
+              backgroundColor: 'transparent',
+              cursor: 'pointer',
+              color: 'var(--color-text-secondary, #49494A)',
+              marginLeft: 12,
+            }}
+          >
+            <X size={16} />
+          </button>
+        </div>
+
+        {/* Body */}
+        {children && (
+          <div style={{ flex: 1, overflowY: 'auto', padding: '20px 24px' }}>
+            {children}
+          </div>
+        )}
+
+        {/* Footer */}
+        {footer && (
+          <div style={{
+            padding: '16px 24px',
+            borderTop: '1px solid var(--color-stroke-subtle, #EEEEEE)',
+            flexShrink: 0,
+            display: 'flex',
+            gap: 8,
+            justifyContent: 'flex-end',
+          }}>
+            {footer}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+});
+
+Sheet.displayName = 'Sheet';
