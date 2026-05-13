@@ -1,4 +1,3 @@
-import { DashboardPage } from './DashboardPage';
 import { OverviewSection } from './OverviewSection';
 import { PrimitivesSection } from './PrimitivesSection';
 import { SemanticsSection } from './SemanticsSection';
@@ -48,11 +47,6 @@ interface MainContentProps {
 }
 
 export function MainContent({ activeSection, isCollapsed }: MainContentProps) {
-  // Dashboard App renders as a full-screen overlay — no wrapper needed
-  if (activeSection === 'dashboard-app') {
-    return <DashboardPage />;
-  }
-
   const renderSection = () => {
     switch (activeSection) {
       case 'overview':          return <OverviewSection />;
