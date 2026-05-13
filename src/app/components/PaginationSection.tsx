@@ -3,10 +3,11 @@ import { PageLayout, Section } from './PageLayout';
 import { Pagination } from '../../components';
 
 const toc = [
-  { id: 'pagination-usage',    label: 'Usage Guidelines' },
-  { id: 'pagination-basic',    label: 'Basic Usage' },
-  { id: 'pagination-many',     label: 'Many Pages' },
-  { id: 'pagination-controlled', label: 'Controlled' },
+  { id: 'pagination-usage',       label: 'Usage Guidelines' },
+  { id: 'pagination-basic',       label: 'Basic Usage' },
+  { id: 'pagination-rows',        label: 'Rows Per Page' },
+  { id: 'pagination-many',        label: 'Many Pages' },
+  { id: 'pagination-controlled',  label: 'Controlled' },
 ];
 
 function DemoCard({ title, children }: { title: string; children: React.ReactNode }) {
@@ -41,6 +42,15 @@ export function PaginationSection() {
             </div>
           ))}
         </div>
+      </Section>
+
+      <Section id="pagination-rows" title="Rows Per Page">
+        <p style={{ margin: '0 0 24px', fontFamily: 'Rubik, sans-serif', fontSize: 14, color: '#828282', lineHeight: '1.6' }}>
+          Enable <code>showRowsPerPage</code> to display the full layout matching the Figma design — "Rows per page" label on the left, pagination controls on the right.
+        </p>
+        <DemoCard title="With rows per page selector">
+          <Pagination total={100} pageSize={10} defaultPage={2} showRowsPerPage />
+        </DemoCard>
       </Section>
 
       <Section id="pagination-basic" title="Basic Usage">
