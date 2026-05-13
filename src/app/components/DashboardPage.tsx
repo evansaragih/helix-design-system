@@ -357,7 +357,7 @@ function WelcomeDialog({ open, onClose }: { open: boolean; onClose: () => void }
 // ─── Main DashboardPage ───────────────────────────────────────────────────────
 
 export function DashboardPage() {
-  const [showWelcome, setShowWelcome] = useState(true);
+  const [showWelcome, setShowWelcome] = useState(false);
   const [activeNav, setActiveNav] = useState('dashboard');
 
   return (

@@ -22,9 +22,7 @@ export function Sidebar({ activeSection, onSectionChange, isCollapsed }: Sidebar
     setExpandedSections(newExpanded);
   };
 
-  const quickAccessItems = [
-    { label: 'Dashboard App', id: 'dashboard-app' },
-  ];
+  const quickAccessItems: { label: string; id: string }[] = [];
 
   const foundationItems = [
     { label: 'Color', id: 'primitives' },
@@ -125,7 +123,7 @@ export function Sidebar({ activeSection, onSectionChange, isCollapsed }: Sidebar
         padding: '0 16px 16px'
       }}>
         {/* Quick Access */}
-        {!isCollapsed && (
+        {!isCollapsed && quickAccessItems.length > 0 && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
             <p style={{
               margin: '0 0 4px 8px',

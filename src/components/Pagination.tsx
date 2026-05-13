@@ -9,6 +9,9 @@ export interface PaginationProps extends React.HTMLAttributes<HTMLDivElement> {
   onPageChange?: (page: number) => void;
   siblingCount?: number;
   showFirstLast?: boolean;
+  showRowsPerPage?: boolean;
+  pageSizes?: number[];
+  onPageSizeChange?: (size: number) => void;
 }
 
 function range(from: number, to: number) {
@@ -60,6 +63,10 @@ function PageBtn({
     ? 'var(--color-text-muted, #9F9F9F)'
     : 'var(--color-text-secondary, #49494A)';
 
+  const boxShadow = active
+    ? '0px 0.5px 4px 0px var(--color-brand-primary, #F57E20), inset 0px -5px 4px 0px var(--color-brand-primary, #F57E20)'
+    : 'none';
+
   return (
     <button
       disabled={disabled}
@@ -70,22 +77,27 @@ function PageBtn({
         display: 'inline-flex',
         alignItems: 'center',
         justifyContent: 'center',
-        minWidth: 32,
-        height: 32,
-        padding: '0 6px',
-        borderRadius: 6,
-        border: active ? 'none' : '1px solid transparent',
+        gap: 8,
+        minWidth: 36,
+        height: 36,
+        padding: '8px 11px',
+        borderRadius: 8,
+        border: active
+          ? '1px solid var(--color-brand-primary, #F57E20)'
+          : '1px solid transparent',
         backgroundColor: bg,
         color,
         cursor: disabled ? 'default' : 'pointer',
         fontFamily: 'Rubik, sans-serif',
-        fontWeight: active ? 500 : 400,
+        fontWeight: 400,
         fontSize: 13,
         lineHeight: '19.2px',
         letterSpacing: '-0.01px',
         outline: 'none',
         transition: 'background-color 0.15s, color 0.15s',
         flexShrink: 0,
+        whiteSpace: 'nowrap',
+        boxShadow,
       }}
     >
       {children}
@@ -101,12 +113,17 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(({
   onPageChange,
   siblingCount = 1,
   showFirstLast = false,
+  showRowsPerPage = false,
+  pageSizes = [10, 25, 50, 100],
+  onPageSizeChange,
   style,
   className,
   ...props
 }, ref) => {
   const [internalPage, setInternalPage] = useState(defaultPage);
-  const totalPages = Math.max(1, Math.ceil(total / pageSize));
+  const [internalPageSize, setInternalPageSize] = useState(pageSize);
+  const resolvedPageSize = onPageSizeChange ? pageSize : internalPageSize;
+  const totalPages = Math.max(1, Math.ceil(total / resolvedPageSize));
   const isControlled = controlledPage !== undefined;
   const current = Math.min(Math.max(isControlled ? controlledPage! : internalPage, 1), totalPages);
 
@@ -116,28 +133,28 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(({
     onPageChange?.(next);
   };
 
+  const handlePageSizeChange = (size: number) => {
+    setInternalPageSize(size);
+    onPageSizeChange?.(size);
+    go(1);
+  };
+
   const pages = buildPages(current, totalPages, siblingCount);
 
-  return (
-    <div
-      ref={ref}
-      role="navigation"
-      aria-label="Pagination"
-      style={{ display: 'inline-flex', alignItems: 'center', gap: 4, ...style }}
-      className={className}
-      {...props}
-    >
+  const paginationControls = (
+    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 0 }}>
       <PageBtn disabled={current <= 1} onClick={() => go(current - 1)}>
         <ChevronLeft size={14} strokeWidth={2} />
+        Previous
       </PageBtn>
 
       {pages.map((p, i) =>
         p === '...' ? (
           <span key={`dots-${i}`} style={{
             display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-            width: 32, height: 32, color: 'var(--color-text-muted, #9F9F9F)',
+            width: 36, height: 36, color: 'var(--color-text-muted, #9F9F9F)',
           }}>
-            <MoreHorizontal size={14} />
+            <MoreHorizontal size={12} />
           </span>
         ) : (
           <PageBtn key={p} active={p === current} onClick={() => go(p as number)}>
@@ -147,8 +164,79 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(({
       )}
 
       <PageBtn disabled={current >= totalPages} onClick={() => go(current + 1)}>
+        Next
         <ChevronRight size={14} strokeWidth={2} />
       </PageBtn>
+    </div>
+  );
+
+  if (!showRowsPerPage) {
+    return (
+      <div
+        ref={ref}
+        role="navigation"
+        aria-label="Pagination"
+        style={{ display: 'inline-flex', alignItems: 'center', ...style }}
+        className={className}
+        {...props}
+      >
+        {paginationControls}
+      </div>
+    );
+  }
+
+  return (
+    <div
+      ref={ref}
+      role="navigation"
+      aria-label="Pagination"
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        width: '100%',
+        ...style,
+      }}
+      className={className}
+      {...props}
+    >
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <span style={{
+          fontFamily: 'Rubik, sans-serif',
+          fontWeight: 400,
+          fontSize: 13,
+          lineHeight: '19.2px',
+          letterSpacing: '-0.01px',
+          color: 'var(--color-text-secondary, #49494A)',
+          whiteSpace: 'nowrap',
+        }}>
+          Rows per page
+        </span>
+        {pageSizes && pageSizes.length > 0 && (
+          <select
+            value={resolvedPageSize}
+            onChange={e => handlePageSizeChange(Number(e.target.value))}
+            style={{
+              fontFamily: 'Rubik, sans-serif',
+              fontSize: 13,
+              lineHeight: '19.2px',
+              color: 'var(--color-text-secondary, #49494A)',
+              border: '1px solid var(--color-border-default, #E0E0E0)',
+              borderRadius: 6,
+              padding: '2px 6px',
+              backgroundColor: 'transparent',
+              cursor: 'pointer',
+              outline: 'none',
+            }}
+          >
+            {pageSizes.map(s => (
+              <option key={s} value={s}>{s}</option>
+            ))}
+          </select>
+        )}
+      </div>
+
+      {paginationControls}
     </div>
   );
 });
