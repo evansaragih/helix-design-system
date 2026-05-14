@@ -250,7 +250,7 @@ export function PrimitivesSection() {
   };
 
   const brandColors = { nusantics: nusanticsColors, cekolam: cekolamColors, causa: causaColors };
-  const brandNames = { nusantics: 'Nusantics', cekolam: 'CeKolam', causa: 'Causa' };
+  const brandNames = { nusantics: 'Helix', cekolam: 'CeKolam', causa: 'Causa' };
 
   const currentPalettes = activeTab === 'brand' ? brandColors[brandMode] : systemColors;
   const paletteKeys = Object.keys(currentPalettes);

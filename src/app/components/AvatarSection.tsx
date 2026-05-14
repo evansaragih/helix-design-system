@@ -73,11 +73,11 @@ export function AvatarSection() {
         <DemoCard title="Shape comparison">
           <Row label="circular">
             <Avatar size="md" name="Evan Himawan" shape="circular" />
-            <Avatar size="md" name="Nusantics" shape="circular" />
+            <Avatar size="md" name="Helix" shape="circular" />
           </Row>
           <Row label="rounded">
             <Avatar size="md" name="Evan Himawan" shape="rounded" />
-            <Avatar size="md" name="Nusantics" shape="rounded" />
+            <Avatar size="md" name="Helix" shape="rounded" />
           </Row>
         </DemoCard>
       </Section>
@@ -93,7 +93,7 @@ export function AvatarSection() {
           </Row>
           <Row label="Initials">
             <Avatar size="md" name="Evan Himawan" />
-            <Avatar size="md" name="Nusantics" />
+            <Avatar size="md" name="Helix" />
             <Avatar size="md" initials="DS" />
           </Row>
           <Row label="Icon">

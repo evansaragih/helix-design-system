@@ -23,7 +23,7 @@ export function OverviewSection() {
             fontWeight: 'var(--font-weight-bold)',
             lineHeight: '1.2'
           }}>
-            Nusantics Design System
+            Helix Design System
           </h1>
 
           <p style={{
