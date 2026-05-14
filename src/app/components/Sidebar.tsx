@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronRight } from 'lucide-react';
-import nusanticsMarkSvg from '../../assets/logo/nusantics-mark.svg';
-import nusanticsWordmarkSvg from '../../assets/logo/nusantics-wordmark.svg';
+import helixMarkSvg from '../../assets/logo/helix-mark.svg';
 
 interface SidebarProps {
   activeSection: string;
@@ -102,15 +101,20 @@ export function Sidebar({ activeSection, onSectionChange, isCollapsed }: Sidebar
           height: '36px',
           flexShrink: 0
         }}>
-          <img src={nusanticsMarkSvg} alt="Nusantics" style={{ width: '100%', height: '100%' }} />
+          <img src={helixMarkSvg} alt="Helix" style={{ width: '100%', height: '100%' }} />
         </div>
         {!isCollapsed && (
           <div style={{ flex: 1, minWidth: 0 }}>
-            <img
-              src={nusanticsWordmarkSvg}
-              alt="nusantics"
-              style={{ width: '100%', height: '24px', display: 'block' }}
-            />
+            <span style={{
+              fontFamily: 'Quicksand, sans-serif',
+              fontWeight: 700,
+              fontSize: '20px',
+              color: '#14141E',
+              letterSpacing: '-0.3px',
+              display: 'block',
+            }}>
+              helix
+            </span>
           </div>
         )}
       </div>
@@ -427,7 +431,7 @@ export function Sidebar({ activeSection, onSectionChange, isCollapsed }: Sidebar
                   color: '#828282',
                   letterSpacing: '-0.01px'
                 }}>
-                  evan@nusantics.com
+                  evan@helix.com
                 </p>
               </div>
             )}

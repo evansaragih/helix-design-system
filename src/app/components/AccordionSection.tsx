@@ -10,8 +10,8 @@ const toc = [
 const faqItems = [
   {
     id: 'q1',
-    title: 'What is Nusantics?',
-    content: 'Nusantics is a biotechnology company focused on microbiome science and personalised health solutions developed in Indonesia.',
+    title: 'What is Helix?',
+    content: 'Helix is a biotechnology company focused on microbiome science and personalised health solutions developed in Indonesia.',
   },
   {
     id: 'q2',

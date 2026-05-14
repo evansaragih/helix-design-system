@@ -18,11 +18,11 @@ interface User {
 }
 
 const users: User[] = [
-  { id: 1, name: 'Evan Himawan',   email: 'evan@nusantics.com',    role: 'Admin',   status: 'active' },
-  { id: 2, name: 'Sarah Putri',    email: 'sarah@nusantics.com',   role: 'Editor',  status: 'active' },
-  { id: 3, name: 'Budi Santoso',   email: 'budi@nusantics.com',    role: 'Viewer',  status: 'pending' },
-  { id: 4, name: 'Dewi Rahayu',    email: 'dewi@nusantics.com',    role: 'Editor',  status: 'inactive' },
-  { id: 5, name: 'Andi Wijaya',    email: 'andi@nusantics.com',    role: 'Viewer',  status: 'active' },
+  { id: 1, name: 'Evan Himawan',   email: 'evan@helix.com',    role: 'Admin',   status: 'active' },
+  { id: 2, name: 'Sarah Putri',    email: 'sarah@helix.com',   role: 'Editor',  status: 'active' },
+  { id: 3, name: 'Budi Santoso',   email: 'budi@helix.com',    role: 'Viewer',  status: 'pending' },
+  { id: 4, name: 'Dewi Rahayu',    email: 'dewi@helix.com',    role: 'Editor',  status: 'inactive' },
+  { id: 5, name: 'Andi Wijaya',    email: 'andi@helix.com',    role: 'Viewer',  status: 'active' },
 ];
 
 const basicColumns: Column<User>[] = [

@@ -1,7 +1,7 @@
 import { PageLayout, Section } from './PageLayout';
 import { Navbar } from '../../components/Navbar';
 import { Button } from '../../components';
-import nusanticsMarkSvg from '../../assets/logo/nusantics-mark.svg';
+import helixMarkSvg from '../../assets/logo/helix-mark.svg';
 
 const toc = [
   { id: 'navbar-usage', label: 'Usage Guidelines' },
@@ -21,8 +21,8 @@ function Card({ title, children }: { title: string; children: React.ReactNode })
 
 const logo = (
   <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-    <img src={nusanticsMarkSvg} alt="Nusantics" style={{ width: 28, height: 28 }} />
-    <span style={{ fontFamily: 'Rubik, sans-serif', fontWeight: 700, fontSize: 15, color: '#14141E' }}>Nusantics</span>
+    <img src={helixMarkSvg} alt="Helix" style={{ width: 28, height: 28 }} />
+    <span style={{ fontFamily: 'Rubik, sans-serif', fontWeight: 700, fontSize: 15, color: '#14141E' }}>Helix</span>
   </div>
 );
 

@@ -110,7 +110,7 @@ export function MainContent({ activeSection, isCollapsed }: MainContentProps) {
               lineHeight: '1.6',
               marginBottom: 32,
             }}>
-              The Nusantics design system includes 37 production-ready components. Select any component from the sidebar to view its documentation and interactive examples.
+              The Helix design system includes 37 production-ready components. Select any component from the sidebar to view its documentation and interactive examples.
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 12 }}>
               {[

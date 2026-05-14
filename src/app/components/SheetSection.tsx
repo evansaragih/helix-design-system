@@ -31,7 +31,7 @@ export function SheetSection() {
       <Sheet open={open === 'right'} onClose={() => setOpen(null)} side="right" title="Edit profile" description="Update your account information." footer={<><Button variant="neutral" size="sm" onClick={() => setOpen(null)}>Cancel</Button><Button variant="primary" size="sm">Save changes</Button></>}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <Input label="Full name" placeholder="Evan Himawan" size="md" />
-          <Input label="Email" placeholder="evan@nusantics.com" size="md" />
+          <Input label="Email" placeholder="evan@helix.com" size="md" />
           <Input label="Role" placeholder="Product Designer" size="md" />
         </div>
       </Sheet>

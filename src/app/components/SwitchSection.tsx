@@ -82,7 +82,7 @@ export function SwitchSection() {
             checked={checked2}
             onChange={setChecked2}
             label="Marketing emails"
-            helperText="Get product news and offers from Nusantics."
+            helperText="Get product news and offers from Helix."
           />
         </DemoCard>
       </Section>

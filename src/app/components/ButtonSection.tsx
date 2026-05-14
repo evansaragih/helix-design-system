@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { PageLayout, Section } from './PageLayout';
 
-type Brand = 'Nusantics' | 'CeKolam' | 'Causa';
+type Brand = 'Helix' | 'CeKolam' | 'Causa';
 
 const toc = [
   { id: 'usage-guidelines', label: 'Usage Guidelines' },
@@ -16,7 +16,7 @@ const brandTokens: Record<Brand, {
   secondary: string; secondaryHover: string; secondaryPressed: string;
   tertiary: string; tertiaryHover: string; tertiaryPressed: string;
 }> = {
-  Nusantics: {
+  Helix: {
     primary: '#F57E20', primaryHover: '#DF6505', primaryPressed: '#B35001',
     secondary: '#58595B', secondaryHover: '#48494B', secondaryPressed: '#393A3B',
     tertiary: '#476142', tertiaryHover: '#3E5639', tertiaryPressed: '#2E402A',
@@ -197,7 +197,7 @@ function VariantCard({ name, description, states, darkBg }: {
 function BrandSelector({ brand, onChange }: { brand: Brand; onChange: (b: Brand) => void }) {
   return (
     <div style={{ display: 'flex', gap: '4px', padding: '4px', backgroundColor: '#EEEEEE', borderRadius: '8px', width: 'fit-content', marginBottom: '24px' }}>
-      {(['Nusantics', 'CeKolam', 'Causa'] as Brand[]).map((b) => (
+      {(['Helix', 'CeKolam', 'Causa'] as Brand[]).map((b) => (
         <button
           key={b}
           onClick={() => onChange(b)}
@@ -218,7 +218,7 @@ function BrandSelector({ brand, onChange }: { brand: Brand; onChange: (b: Brand)
 }
 
 export function ButtonSection() {
-  const [brand, setBrand] = useState<Brand>('Nusantics');
+  const [brand, setBrand] = useState<Brand>('Helix');
   const c = brandTokens[brand];
 
   const solidVariants = [
@@ -365,7 +365,7 @@ export function ButtonSection() {
             <li style={{ marginBottom: '8px' }}>Use <strong>Outline</strong> variants when a filled button is too visually heavy</li>
             <li style={{ marginBottom: '8px' }}>Use <strong>Ghost</strong> for the least prominent actions — inline or tertiary navigation</li>
             <li style={{ marginBottom: '8px' }}>Use <strong>Invert</strong> on dark or colored backgrounds</li>
-            <li>Primary, Secondary, and Tertiary colors change based on the active brand (Nusantics, CeKolam, Causa)</li>
+            <li>Primary, Secondary, and Tertiary colors change based on the active brand (Helix, CeKolam, Causa)</li>
           </ul>
         </div>
       </Section>

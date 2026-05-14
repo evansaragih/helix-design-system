@@ -377,7 +377,7 @@ export function InputSection() {
         </p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12 }}>
           <Card title="Helper text">
-            <Input size="md" label="Username" placeholder="nusantics_user" helperText="Only letters, numbers and underscores." />
+            <Input size="md" label="Username" placeholder="helix_user" helperText="Only letters, numbers and underscores." />
             <Input size="md" label="Email" placeholder="you@example.com" helperText="We'll never share your email." />
           </Card>
           <Card title="Error state">
