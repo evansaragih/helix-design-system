@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 import helixMarkSvg from '../../assets/logo/helix-mark.svg';
+import { foundationItems, componentItems } from '../data/navigation';
 
 interface SidebarProps {
   activeSection: string;
@@ -23,59 +24,12 @@ export function Sidebar({ activeSection, onSectionChange, isCollapsed }: Sidebar
 
   const quickAccessItems: { label: string; id: string }[] = [];
 
-  const foundationItems = [
-    { label: 'Color', id: 'primitives' },
-    { label: 'Typography', id: 'typography' },
-    { label: 'Spacing Layout', id: 'utilities' },
-    { label: 'Elevation', id: 'elevation' }
-  ];
-
-  const componentItems = [
-    { label: 'Overview', id: 'components-overview' },
-    { label: 'Accordion', id: 'accordion' },
-    { label: 'Alert', id: 'alert' },
-    { label: 'Alert Dialog', id: 'alert-dialog' },
-    { label: 'Avatar', id: 'avatar' },
-    { label: 'Badge', id: 'badge' },
-    { label: 'Breadcrumb', id: 'breadcrumb' },
-    { label: 'Button', id: 'button' },
-    { label: 'Card', id: 'card' },
-    { label: 'Card Metric', id: 'card-metric' },
-    { label: 'Carousel', id: 'carousel' },
-    { label: 'Checkbox', id: 'checkbox' },
-    { label: 'Comparison Table', id: 'comparison-table' },
-    { label: 'Date Picker', id: 'date-picker' },
-    { label: 'Dialog', id: 'dialog' },
-    { label: 'Divider', id: 'divider' },
-    { label: 'Empty State', id: 'empty-state' },
-    { label: 'Info Card', id: 'info-card' },
-    { label: 'Input', id: 'input' },
-    { label: 'Input OTP', id: 'input-otp' },
-    { label: 'Menu', id: 'menu-item' },
-    { label: 'Navbar', id: 'navbar' },
-    { label: 'Pagination', id: 'pagination' },
-    { label: 'Popover', id: 'popover' },
-    { label: 'Progress Bar', id: 'progress-bar' },
-    { label: 'Radio Button', id: 'radio-button' },
-    { label: 'Select', id: 'select' },
-    { label: 'Sheet', id: 'sheet' },
-    { label: 'Spinner', id: 'spinner' },
-    { label: 'Stepper', id: 'stepper' },
-    { label: 'Switch', id: 'switch' },
-    { label: 'Table', id: 'table' },
-    { label: 'Tabs', id: 'tabs' },
-    { label: 'Text Link', id: 'text-link' },
-    { label: 'Toast', id: 'toast' },
-    { label: 'Toolbar Filter', id: 'toolbar-filter' },
-    { label: 'Tooltip', id: 'tooltip' },
-  ];
-
   const isFoundationsExpanded = expandedSections.has('foundations');
   const isComponentsExpanded = expandedSections.has('components');
 
   return (
     <aside
-      className="fixed left-0 top-0 h-screen overflow-y-auto overflow-x-hidden"
+      className="fixed left-0 top-0 h-screen overflow-hidden"
       style={{
         width: isCollapsed ? '64px' : '240px',
         borderRight: '1px solid #d7d7d7',
@@ -124,7 +78,9 @@ export function Sidebar({ activeSection, onSectionChange, isCollapsed }: Sidebar
         flexDirection: 'column',
         gap: '24px',
         flex: 1,
-        padding: '0 16px 16px'
+        padding: '0 16px 16px',
+        overflowY: 'auto',
+        overflowX: 'hidden'
       }}>
         {/* Quick Access */}
         {!isCollapsed && quickAccessItems.length > 0 && (
@@ -217,7 +173,7 @@ export function Sidebar({ activeSection, onSectionChange, isCollapsed }: Sidebar
                     key={item.id}
                     style={{
                       display: 'flex',
-                      height: '32px',
+                      height: '36px',
                       alignItems: 'center',
                       paddingLeft: isCollapsed ? '0' : '24px',
                       paddingRight: '0',
@@ -232,7 +188,7 @@ export function Sidebar({ activeSection, onSectionChange, isCollapsed }: Sidebar
                         left: '16px',
                         top: 0,
                         width: '1px',
-                        height: '32px',
+                        height: '36px',
                         backgroundColor: '#d7d7d7',
                         borderRadius: '16px'
                       }} />
@@ -242,7 +198,7 @@ export function Sidebar({ activeSection, onSectionChange, isCollapsed }: Sidebar
                       style={{
                         display: 'flex',
                         alignItems: 'center',
-                        minHeight: '32px',
+                        minHeight: '36px',
                         padding: '6px 8px',
                         borderRadius: '6px',
                         border: 'none',
@@ -251,7 +207,7 @@ export function Sidebar({ activeSection, onSectionChange, isCollapsed }: Sidebar
                         cursor: 'pointer',
                         fontFamily: 'Rubik, sans-serif',
                         fontWeight: 400,
-                        fontSize: '13px',
+                        fontSize: '14px',
                         lineHeight: '19.2px',
                         letterSpacing: '-0.01px',
                         color: isActive ? 'white' : '#14141e',
@@ -321,7 +277,7 @@ export function Sidebar({ activeSection, onSectionChange, isCollapsed }: Sidebar
                     key={item.id}
                     style={{
                       display: 'flex',
-                      height: '32px',
+                      height: '36px',
                       alignItems: 'center',
                       paddingLeft: isCollapsed ? '0' : '24px',
                       paddingRight: '0',
@@ -336,7 +292,7 @@ export function Sidebar({ activeSection, onSectionChange, isCollapsed }: Sidebar
                         left: '16px',
                         top: 0,
                         width: '1px',
-                        height: '32px',
+                        height: '36px',
                         backgroundColor: '#d7d7d7',
                         borderRadius: '16px'
                       }} />
@@ -346,7 +302,7 @@ export function Sidebar({ activeSection, onSectionChange, isCollapsed }: Sidebar
                       style={{
                         display: 'flex',
                         alignItems: 'center',
-                        minHeight: '32px',
+                        minHeight: '36px',
                         padding: '6px 8px',
                         borderRadius: '6px',
                         border: 'none',
@@ -355,7 +311,7 @@ export function Sidebar({ activeSection, onSectionChange, isCollapsed }: Sidebar
                         cursor: 'pointer',
                         fontFamily: 'Rubik, sans-serif',
                         fontWeight: 400,
-                        fontSize: '13px',
+                        fontSize: '14px',
                         lineHeight: '19.2px',
                         letterSpacing: '-0.01px',
                         color: isActive ? 'white' : '#14141e',

@@ -72,3 +72,5 @@ export { Carousel } from './Carousel';
 export type { CarouselProps, CarouselItem } from './Carousel';
 export { ToolbarFilter } from './ToolbarFilter';
 export type { ToolbarFilterProps, FilterGroup, FilterOption } from './ToolbarFilter';
+export { Dropzone } from './Dropzone';
+export type { DropzoneProps, DropzoneFile } from './Dropzone';

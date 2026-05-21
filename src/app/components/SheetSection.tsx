@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { PageLayout, Section } from './PageLayout';
 import { Sheet } from '../../components/Sheet';
 import { Button, Input } from '../../components';
+import { RadioButton, RadioGroup } from '../../components/RadioButton';
 
 const toc = [
   { id: 'sheet-usage', label: 'Usage Guidelines' },
@@ -20,6 +21,7 @@ function DemoCard({ title, children }: { title: string; children: React.ReactNod
 
 export function SheetSection() {
   const [open, setOpen] = useState<string | null>(null);
+  const [sortBy, setSortBy] = useState('most-recent');
 
   return (
     <PageLayout
@@ -47,15 +49,13 @@ export function SheetSection() {
         </nav>
       </Sheet>
 
-      <Sheet open={open === 'bottom'} onClose={() => setOpen(null)} side="bottom" title="Sort & Filter" description="Refine the current view." footer={<><Button variant="neutral" size="sm" onClick={() => setOpen(null)}>Reset</Button><Button variant="primary" size="sm">Apply</Button></>}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-          {['Most recent', 'Oldest first', 'Alphabetical', 'By status'].map(opt => (
-            <label key={opt} style={{ display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer' }}>
-              <input type="radio" name="sort" style={{ accentColor: '#F57E20' }} />
-              <span style={{ fontFamily: 'Rubik, sans-serif', fontSize: 14, color: '#14141E' }}>{opt}</span>
-            </label>
-          ))}
-        </div>
+      <Sheet open={open === 'bottom'} onClose={() => setOpen(null)} side="bottom" title="Sort & Filter" description="Refine the current view." footer={<><Button variant="neutral" size="sm" onClick={() => { setSortBy('most-recent'); setOpen(null); }}>Reset</Button><Button variant="primary" size="sm" onClick={() => setOpen(null)}>Apply</Button></>}>
+        <RadioGroup name="sort" value={sortBy} onChange={setSortBy}>
+          <RadioButton value="most-recent" label="Most recent" />
+          <RadioButton value="oldest-first" label="Oldest first" />
+          <RadioButton value="alphabetical" label="Alphabetical" />
+          <RadioButton value="by-status" label="By status" />
+        </RadioGroup>
       </Sheet>
 
       <Section id="sheet-usage" title="Usage Guidelines">

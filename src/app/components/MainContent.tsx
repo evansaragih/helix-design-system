@@ -40,6 +40,7 @@ import { InfoCardSection } from './InfoCardSection';
 import { ComparisonTableSection } from './ComparisonTableSection';
 import { CarouselSection } from './CarouselSection';
 import { ToolbarFilterSection } from './ToolbarFilterSection';
+import { DropzoneSection } from './DropzoneSection';
 
 interface MainContentProps {
   activeSection: string;
@@ -91,6 +92,7 @@ export function MainContent({ activeSection, isCollapsed }: MainContentProps) {
       case 'comparison-table':  return <ComparisonTableSection />;
       case 'carousel':          return <CarouselSection />;
       case 'toolbar-filter':    return <ToolbarFilterSection />;
+      case 'dropzone':          return <DropzoneSection />;
       case 'components-overview':
         return (
           <div style={{ padding: '40px 48px' }}>

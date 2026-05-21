@@ -1,14 +1,26 @@
-import { Search, Sun, Moon, Monitor, Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { Search, Sun, Moon, Monitor } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { Command } from '../../components/Command';
+import { Input } from '../../components/Input';
+import { foundationItems, componentItems } from '../data/navigation';
 
 interface HeaderProps {
   isCollapsed: boolean;
   onToggleCollapse: () => void;
+  onSectionChange: (section: string) => void;
 }
 
-export function Header({ isCollapsed, onToggleCollapse }: HeaderProps) {
+const searchItems = [
+  ...foundationItems.map(item => ({ ...item, group: 'Foundations' })),
+  ...componentItems.map(item => ({ ...item, group: 'Components' })),
+];
+
+export function Header({ isCollapsed, onToggleCollapse, onSectionChange }: HeaderProps) {
   const [theme, setTheme] = useState<'light' | 'dark' | 'system'>('light');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const searchContainerRef = useRef<HTMLDivElement>(null);
 
   const themes = [
     { value: 'light' as const, label: 'Light', icon: Sun },
@@ -18,6 +30,18 @@ export function Header({ isCollapsed, onToggleCollapse }: HeaderProps) {
 
   const currentTheme = themes.find(t => t.value === theme)!;
   const CurrentIcon = currentTheme.icon;
+
+  useEffect(() => {
+    if (!isSearchOpen) return;
+    const handler = (e: MouseEvent) => {
+      if (searchContainerRef.current && !searchContainerRef.current.contains(e.target as Node)) {
+        setIsSearchOpen(false);
+        setSearchQuery('');
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [isSearchOpen]);
 
   return (
     <header
@@ -65,39 +89,35 @@ export function Header({ isCollapsed, onToggleCollapse }: HeaderProps) {
           )}
         </svg>
       </button>
-      <div className="flex-1" style={{ maxWidth: '448px' }}>
-        <div className="relative">
-          <Search
-            className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4"
-            style={{ color: 'var(--color-text-tertiary)' }}
-          />
-          <input
-            type="text"
-            placeholder="Search documentation..."
-            className="w-full"
-            style={{
-              paddingLeft: 'var(--spacing-40)',
-              paddingRight: 'var(--spacing-16)',
-              paddingTop: 'var(--spacing-8)',
-              paddingBottom: 'var(--spacing-8)',
-              border: '1px solid var(--color-input-border-default)',
-              borderRadius: 'var(--radius-lg)',
-              fontSize: 'var(--text-body-default)',
-              fontFamily: 'var(--font-family-body)',
-              color: 'var(--color-input-text-default)',
-              outline: 'none',
-              transition: 'border-color 0.2s'
-            }}
-            onFocus={(e) => {
-              e.target.style.borderColor = 'var(--color-border-focus)';
-              e.target.style.boxShadow = '0 0 0 3px rgba(245, 126, 32, 0.1)';
-            }}
-            onBlur={(e) => {
-              e.target.style.borderColor = 'var(--color-input-border-default)';
-              e.target.style.boxShadow = 'none';
-            }}
-          />
-        </div>
+
+      {/* Search with Command dropdown */}
+      <div className="flex-1" style={{ maxWidth: '448px', position: 'relative' }} ref={searchContainerRef}>
+        <Input
+          size="md"
+          placeholder="Search documentation..."
+          leadingContent={<Search size={16} />}
+          value={searchQuery}
+          onChange={e => setSearchQuery(e.target.value)}
+          onFocus={() => setIsSearchOpen(true)}
+        />
+
+        {isSearchOpen && (
+          <div style={{ position: 'absolute', top: 'calc(100% + 6px)', left: 0, right: 0, zIndex: 50 }}>
+            <Command
+              items={searchItems}
+              value={searchQuery}
+              onQueryChange={setSearchQuery}
+              hideSearch
+              width="100%"
+              style={{ maxHeight: '360px', overflowY: 'auto' }}
+              onSelect={(item) => {
+                onSectionChange(item.id);
+                setIsSearchOpen(false);
+                setSearchQuery('');
+              }}
+            />
+          </div>
+        )}
       </div>
 
       <div className="relative">

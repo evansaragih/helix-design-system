@@ -1,4 +1,4 @@
-import { forwardRef, useEffect } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import { X } from 'lucide-react';
 
 export type SheetSide = 'right' | 'left' | 'top' | 'bottom';
@@ -23,6 +23,16 @@ const SIDE_STYLES: Record<SheetSide, React.CSSProperties> = {
   bottom: { bottom: 0, left: 0, right: 0, height: 320 },
 };
 
+const HIDDEN_TRANSFORM: Record<SheetSide, string> = {
+  right:  'translateX(100%)',
+  left:   'translateX(-100%)',
+  top:    'translateY(-100%)',
+  bottom: 'translateY(100%)',
+};
+
+const EASING = 'cubic-bezier(0.32, 0.72, 0, 1)';
+const DURATION = 320;
+
 export const Sheet = forwardRef<HTMLDivElement, SheetProps>(({
   open,
   onClose,
@@ -34,6 +44,21 @@ export const Sheet = forwardRef<HTMLDivElement, SheetProps>(({
   size,
   closeOnOverlayClick = true,
 }, ref) => {
+  const [isMounted, setIsMounted] = useState(open);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    if (open) {
+      setIsMounted(true);
+      // Two rAFs ensure the initial hidden transform is painted before we transition to visible
+      requestAnimationFrame(() => requestAnimationFrame(() => setIsVisible(true)));
+    } else {
+      setIsVisible(false);
+      const t = setTimeout(() => setIsMounted(false), DURATION);
+      return () => clearTimeout(t);
+    }
+  }, [open]);
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
@@ -41,7 +66,7 @@ export const Sheet = forwardRef<HTMLDivElement, SheetProps>(({
     return () => window.removeEventListener('keydown', onKey);
   }, [open, onClose]);
 
-  if (!open) return null;
+  if (!isMounted) return null;
 
   const sideStyle = { ...SIDE_STYLES[side] };
   if (size !== undefined) {
@@ -62,6 +87,8 @@ export const Sheet = forwardRef<HTMLDivElement, SheetProps>(({
         position: 'fixed', inset: 0, zIndex: 900,
         backgroundColor: 'rgba(0,0,0,0.4)',
         backdropFilter: 'blur(2px)',
+        opacity: isVisible ? 1 : 0,
+        transition: `opacity ${DURATION}ms ease`,
       }}
     >
       <div
@@ -76,6 +103,9 @@ export const Sheet = forwardRef<HTMLDivElement, SheetProps>(({
           borderRadius,
           display: 'flex',
           flexDirection: 'column',
+          transform: isVisible ? 'translate(0, 0)' : HIDDEN_TRANSFORM[side],
+          transition: `transform ${DURATION}ms ${EASING}`,
+          willChange: 'transform',
           ...sideStyle,
         }}
       >

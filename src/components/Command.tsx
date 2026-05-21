@@ -34,6 +34,8 @@ export interface CommandProps {
   onQueryChange?: (query: string) => void;
   /** Controlled search value */
   value?: string;
+  /** Hide the built-in search input (e.g. when an external input drives filtering) */
+  hideSearch?: boolean;
   width?: number | string;
   className?: string;
   style?: React.CSSProperties;
@@ -109,6 +111,7 @@ export function Command({
   onSelect,
   onQueryChange,
   value,
+  hideSearch = false,
   width = 237,
   className,
   style,
@@ -370,16 +373,18 @@ export function Command({
       )}
 
       {/* Search input */}
-      <div style={{ padding: '0 8px', paddingTop: header ? 0 : 10, paddingBottom: 6, flexShrink: 0 }}>
-        <Input
-          size="sm"
-          placeholder={placeholder}
-          leadingContent={<Search size={16} />}
-          value={query}
-          onChange={e => handleQueryChange(e.target.value)}
-          style={{ borderRadius: 8 }}
-        />
-      </div>
+      {!hideSearch && (
+        <div style={{ padding: '0 8px', paddingTop: header ? 0 : 10, paddingBottom: 6, flexShrink: 0 }}>
+          <Input
+            size="sm"
+            placeholder={placeholder}
+            leadingContent={<Search size={16} />}
+            value={query}
+            onChange={e => handleQueryChange(e.target.value)}
+            style={{ borderRadius: 8 }}
+          />
+        </div>
+      )}
 
       {/* Item list */}
       <div

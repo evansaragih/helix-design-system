@@ -93,7 +93,7 @@ export function PageLayout({ category, title, description, tocItems, children }:
           </p>
           <h1 style={{
             margin: '0 0 16px',
-            fontFamily: 'Rubik, sans-serif',
+            fontFamily: 'Quicksand, sans-serif',
             fontWeight: 700,
             fontSize: '40px',
             color: 'white',
