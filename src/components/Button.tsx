@@ -32,8 +32,8 @@ interface SizeConfig {
 const SIZES: Record<ButtonSize, SizeConfig> = {
   xs: { height: '24px', px: 6,  py: 4,  fontSize: 11, lineHeight: '15.6px', iconSize: 12, gap: 4,  radius: 6 },
   sm: { height: '36px', px: 11, py: 8,  fontSize: 13, lineHeight: '19.2px', iconSize: 14, gap: 6,  radius: 8 },
-  md: { height: '52px', px: 16, py: 12, fontSize: 16, lineHeight: '24px',   iconSize: 16, gap: 8,  radius: 8 },
-  lg: { height: '64px', px: 20, py: 12, fontSize: 20, lineHeight: '30px',   iconSize: 20, gap: 8,  radius: 10 },
+  md: { height: '48px', px: 16, py: 12, fontSize: 16, lineHeight: '24px',   iconSize: 16, gap: 8,  radius: 8 },
+  lg: { height: '58px', px: 20, py: 12, fontSize: 20, lineHeight: '30px',   iconSize: 20, gap: 8,  radius: 10 },
 };
 
 type VariantState = 'default' | 'hover' | 'focus';

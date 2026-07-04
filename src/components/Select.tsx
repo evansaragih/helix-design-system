@@ -41,7 +41,7 @@ interface SizeCfg {
 }
 
 const SIZES: Record<SelectSize, SizeCfg> = {
-  sm: { height: 36, px: 12, fontSize: 13, radius: 6 },
+  sm: { height: 38, px: 12, fontSize: 13, radius: 6 },
   md: { height: 42, px: 12, fontSize: 13, radius: 8 },
   lg: { height: 48, px: 16, fontSize: 13, radius: 8 },
 };

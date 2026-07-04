@@ -44,15 +44,15 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(({
           align={align}
           sideOffset={sideOffset}
           style={{
-            backgroundColor: isDark ? 'var(--color-bg-inverse, #14141E)' : '#FFFFFF',
+            backgroundColor: isDark ? '#59595A' : '#FFFFFF',
             color: isDark ? '#FFFFFF' : 'var(--color-text-primary, #14141E)',
             border: isDark ? 'none' : '1px solid var(--color-stroke-subtle, #EEEEEE)',
             borderRadius: 'var(--radius-md, 6px)',
             padding: '6px 10px',
             fontFamily: 'Rubik, sans-serif',
             fontWeight: 400,
-            fontSize: 12,
-            lineHeight: '18px',
+            fontSize: 13,
+            lineHeight: '19.2px',
             letterSpacing: '-0.01px',
             boxShadow: isDark ? 'none' : 'var(--shadow-sm)',
             maxWidth: 240,
@@ -63,7 +63,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(({
           {content}
           <RadixTooltip.Arrow
             style={{
-              fill: isDark ? 'var(--color-bg-inverse, #14141E)' : '#FFFFFF',
+              fill: isDark ? '#59595A' : '#FFFFFF',
             }}
           />
         </RadixTooltip.Content>

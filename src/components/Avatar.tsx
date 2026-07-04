@@ -28,10 +28,10 @@ interface SizeConfig {
 }
 
 const SIZES: Record<AvatarSize, SizeConfig> = {
-  xs: { size: 24, fontSize: 10, iconSize: 12, radius: 9999, roundedRadius: 4 },
-  sm: { size: 32, fontSize: 12, iconSize: 14, radius: 9999, roundedRadius: 6 },
-  md: { size: 40, fontSize: 14, iconSize: 18, radius: 9999, roundedRadius: 8 },
-  lg: { size: 48, fontSize: 16, iconSize: 22, radius: 9999, roundedRadius: 10 },
+  xs: { size: 26, fontSize: 13, iconSize: 12, radius: 9999, roundedRadius: 8 },
+  sm: { size: 38, fontSize: 13, iconSize: 14, radius: 9999, roundedRadius: 8 },
+  md: { size: 48, fontSize: 20, iconSize: 18, radius: 9999, roundedRadius: 8 },
+  lg: { size: 58, fontSize: 20, iconSize: 22, radius: 9999, roundedRadius: 8 },
 };
 
 function getInitials(name?: string, initials?: string): string {

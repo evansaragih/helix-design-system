@@ -32,7 +32,7 @@ export const InputOTP = ({
     ? 'var(--color-stroke-subtle, #d7d7d7)'
     : isInvalid
     ? 'var(--color-destructive, #dc2626)'
-    : 'var(--color-stroke-default, #bababa)';
+    : 'var(--color-stroke-subtle, #d7d7d7)';
 
   const focusBorderColor = 'var(--color-brand-primary, #F57E20)';
 

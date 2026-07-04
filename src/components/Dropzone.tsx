@@ -189,7 +189,7 @@ export const Dropzone = forwardRef<HTMLDivElement, DropzoneProps>(({
   const zoneBg = disabled
     ? 'var(--color-container-secondary, #F7F7F7)'
     : isDragOver
-    ? 'rgba(245, 126, 32, 0.04)'
+    ? 'var(--color-status-brand-bg, #FEF2E9)'
     : '#FFFFFF';
 
   const acceptLabel = accept
@@ -232,7 +232,7 @@ export const Dropzone = forwardRef<HTMLDivElement, DropzoneProps>(({
           justifyContent: 'center',
           gap: 12,
           padding: '32px 24px',
-          borderRadius: 12,
+          borderRadius: 'var(--radius-lg, 8px)',
           border: `1.5px dashed ${zoneBorderColor}`,
           backgroundColor: zoneBg,
           cursor: disabled ? 'not-allowed' : 'pointer',

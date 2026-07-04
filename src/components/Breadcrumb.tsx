@@ -16,8 +16,8 @@ export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 const SIZES = {
-  sm: { fontSize: 12, lineHeight: '18px', iconSize: 14 },
-  md: { fontSize: 13, lineHeight: '19.2px', iconSize: 16 },
+  sm: { fontSize: 12, lineHeight: '18px', iconSize: 8 },
+  md: { fontSize: 13, lineHeight: '19.2px', iconSize: 10 },
 };
 
 export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
@@ -46,7 +46,7 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
                   aria-current="page"
                   style={{
                     fontFamily: 'Rubik, sans-serif',
-                    fontWeight: 500,
+                    fontWeight: 400,
                     fontSize: sz.fontSize,
                     lineHeight: sz.lineHeight,
                     color: 'var(--color-text-primary, #14141E)',

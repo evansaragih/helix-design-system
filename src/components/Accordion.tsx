@@ -87,9 +87,9 @@ function AccordionItemComponent({
             border: 'none',
             cursor: item.disabled ? 'not-allowed' : 'pointer',
             fontFamily: 'Rubik, sans-serif',
-            fontWeight: 500,
-            fontSize: 14,
-            lineHeight: '21px',
+            fontWeight: 400,
+            fontSize: 13,
+            lineHeight: '19.2px',
             color: item.disabled
               ? 'var(--color-text-muted, #9F9F9F)'
               : 'var(--color-text-primary, #14141E)',
@@ -134,7 +134,7 @@ function AccordionItemComponent({
             fontFamily: 'Rubik, sans-serif',
             fontWeight: 400,
             fontSize: 13,
-            lineHeight: '19.6px',
+            lineHeight: '19.2px',
             color: 'var(--color-text-secondary, #49494A)',
             letterSpacing: '-0.01px',
           }}

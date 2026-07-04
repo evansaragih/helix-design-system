@@ -57,7 +57,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
 
   const isSmall = size === 'Small';
   const boxSize = isSmall ? 16 : 20;
-  const iconSize = isSmall ? 12 : 14;
+  const iconSize = isSmall ? 14 : 14; // Figma: checkmark ~14px regardless of box size
 
   const effectiveState = simulateState !== 'Default' ? simulateState : (isFocused ? 'Focus' : (isHovered ? 'Hover' : 'Default'));
 
@@ -67,13 +67,9 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
   let iconColor = '#FFFFFF';
 
   if (disabled) {
-    if (currentChecked) {
-      bgColor = 'var(--color-input-bg-disabled, #D7D7D7)'; // Grey out the brand color
-      borderColor = 'var(--color-input-bg-disabled, #D7D7D7)';
-    } else {
-      bgColor = '#F7F7F7';
-      borderColor = '#D7D7D7';
-    }
+    // Figma: both the unchecked and checked disabled states use the same filled grey box
+    bgColor = 'var(--color-input-bg-disabled, #D7D7D7)';
+    borderColor = 'var(--color-input-bg-disabled, #D7D7D7)';
   } else if (invalid) {
     borderColor = 'var(--color-destructive, #DC2626)';
     if (currentChecked) {

@@ -36,7 +36,7 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(({
   trigger,
   children,
   placement = 'bottom-start',
-  width = 280,
+  width = 300,
   closeOnOutsideClick = true,
   open: controlledOpen,
   onOpenChange,
@@ -78,7 +78,7 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(({
             width,
             backgroundColor: '#FFFFFF',
             border: '1px solid var(--color-stroke-subtle, #EEEEEE)',
-            borderRadius: 12,
+            borderRadius: 'var(--radius-lg, 8px)',
             boxShadow: '0px 8px 24px rgba(0,0,0,0.10), 0px 2px 8px rgba(0,0,0,0.06)',
             overflow: 'hidden',
             ...getPlacementStyle(placement),
@@ -101,11 +101,11 @@ export interface PopoverHeaderProps extends React.HTMLAttributes<HTMLDivElement>
 export function PopoverHeader({ title, description, style, ...props }: PopoverHeaderProps) {
   return (
     <div style={{ padding: '16px 16px 12px', borderBottom: '1px solid var(--color-stroke-subtle, #EEEEEE)', ...style }} {...props}>
-      <p style={{ margin: 0, fontFamily: 'Rubik, sans-serif', fontWeight: 600, fontSize: 13, color: 'var(--color-text-primary, #14141E)', lineHeight: '19.2px' }}>
+      <p style={{ margin: 0, fontFamily: 'Rubik, sans-serif', fontWeight: 500, fontSize: 13, color: 'var(--color-text-primary, #14141E)', lineHeight: '19.2px' }}>
         {title}
       </p>
       {description && (
-        <p style={{ margin: '2px 0 0', fontFamily: 'Rubik, sans-serif', fontWeight: 400, fontSize: 12, color: 'var(--color-text-secondary, #49494A)', lineHeight: '18px' }}>
+        <p style={{ margin: '2px 0 0', fontFamily: 'Rubik, sans-serif', fontWeight: 400, fontSize: 12, color: 'var(--color-text-tertiary, #828282)', lineHeight: '18px' }}>
           {description}
         </p>
       )}

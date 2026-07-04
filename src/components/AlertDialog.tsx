@@ -72,7 +72,7 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(({
         aria-labelledby="alert-dialog-title"
         style={{
           backgroundColor: '#FFFFFF',
-          borderRadius: 16,
+          borderRadius: 8,
           boxShadow: '0px 24px 48px rgba(0,0,0,0.12)',
           width: '100%',
           maxWidth: size === 'sm' ? 360 : 440,
@@ -83,7 +83,7 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(({
         <div style={{ padding: size === 'sm' ? '24px 24px 0' : '32px 32px 0' }}>
           {/* Icon */}
           <div style={{
-            width: 48, height: 48, borderRadius: 12,
+            width: 40, height: 40, borderRadius: 8,
             backgroundColor: vm.iconBg,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             marginBottom: 20,
@@ -99,9 +99,9 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(({
             style={{
               margin: '0 0 8px',
               fontFamily: 'var(--font-family-heading, Rubik, sans-serif)',
-              fontWeight: 600,
-              fontSize: size === 'sm' ? 16 : 18,
-              lineHeight: size === 'sm' ? '24px' : '27px',
+              fontWeight: 500,
+              fontSize: 16,
+              lineHeight: '24px',
               color: 'var(--color-text-primary, #14141E)',
             }}
           >
@@ -113,8 +113,8 @@ export const AlertDialog = forwardRef<HTMLDivElement, AlertDialogProps>(({
               margin: 0,
               fontFamily: 'Rubik, sans-serif',
               fontWeight: 400,
-              fontSize: 14,
-              lineHeight: '21px',
+              fontSize: 13,
+              lineHeight: '19.2px',
               color: 'var(--color-text-secondary, #49494A)',
             }}>
               {description}

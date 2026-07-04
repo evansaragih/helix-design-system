@@ -19,7 +19,7 @@ export const Divider = forwardRef<HTMLDivElement, DividerProps>(({
   type = 'line',
   label,
   labelAlign = 'center',
-  color = 'var(--color-stroke-default, #D7D7D7)',
+  color = 'var(--color-stroke-subtle, #D7D7D7)',
   thickness = 1,
   style,
   className,

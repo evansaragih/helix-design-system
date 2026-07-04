@@ -23,13 +23,13 @@ function StepCircle({ step, index }: { step: Step; index: number }) {
   const status = step.status ?? 'pending';
 
   const bg =
-    status === 'completed' ? 'var(--color-brand-primary, #F57E20)' :
+    status === 'completed' ? 'var(--color-text-success, #12843C)' :
     status === 'active'    ? 'var(--color-brand-primary, #F57E20)' :
     status === 'error'     ? 'var(--color-status-error-bg, #FEE2E2)' :
     'var(--color-container-tertiary, #EEEEEE)';
 
   const borderColor =
-    status === 'completed' ? 'var(--color-brand-primary, #F57E20)' :
+    status === 'completed' ? 'var(--color-text-success, #12843C)' :
     status === 'active'    ? 'var(--color-brand-primary, #F57E20)' :
     status === 'error'     ? 'var(--color-stroke-error, #DC2626)' :
     'var(--color-stroke-default, #D7D7D7)';
@@ -78,7 +78,7 @@ function ConnectorLine({ status, orientation }: { status: StepStatus; orientatio
         flex: 1,
         minHeight: 24,
         backgroundColor: isComplete
-          ? 'var(--color-brand-primary, #F57E20)'
+          ? 'var(--color-text-success, #12843C)'
           : 'var(--color-stroke-subtle, #EEEEEE)',
         marginLeft: 15,
         transition: 'background-color 0.2s',
@@ -90,7 +90,7 @@ function ConnectorLine({ status, orientation }: { status: StepStatus; orientatio
       flex: 1,
       height: 2,
       backgroundColor: isComplete
-        ? 'var(--color-brand-primary, #F57E20)'
+        ? 'var(--color-text-success, #12843C)'
         : 'var(--color-stroke-subtle, #EEEEEE)',
       transition: 'background-color 0.2s',
     }} />

@@ -190,7 +190,8 @@ export function Command({
     const isCheckable = type === 'checkbox' || type === 'radio';
 
     let bg = 'var(--color-container-primary, #FFFFFF)';
-    if (isActive || hovered) bg = 'var(--color-bg-hover, #EEEEEE)';
+    if (isCheckable && item.checked) bg = CHECKABLE_BG;
+    if (isActive || hovered) bg = HOVER_BG;
 
     return (
       <div
@@ -239,8 +240,8 @@ export function Command({
         )}
         {type === 'default' && item.shortcut && (
           <span style={{
-            fontFamily: 'Inter, sans-serif', fontWeight: 400,
-            fontSize: 12, lineHeight: '16px', letterSpacing: '1.2px',
+            fontFamily: 'Rubik, sans-serif', fontWeight: 400,
+            fontSize: 13, lineHeight: '19.2px', letterSpacing: '-0.01px',
             color: 'var(--color-text-tertiary, #828282)',
             opacity: 0.6, flexShrink: 0, whiteSpace: 'nowrap',
           }}>
@@ -288,8 +289,8 @@ export function Command({
         </div>
         {item.shortcut && (
           <span style={{
-            fontFamily: 'Inter, sans-serif', fontWeight: 400,
-            fontSize: 12, lineHeight: '16px', letterSpacing: '1.2px',
+            fontFamily: 'Rubik, sans-serif', fontWeight: 400,
+            fontSize: 13, lineHeight: '19.2px', letterSpacing: '-0.01px',
             color: 'var(--color-text-tertiary, #828282)',
             opacity: 0.6, flexShrink: 0, whiteSpace: 'nowrap',
           }}>

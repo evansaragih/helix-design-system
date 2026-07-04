@@ -38,9 +38,9 @@ export const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(({
   const labelStyle: React.CSSProperties = {
     fontFamily: 'Rubik, sans-serif',
     fontWeight: 400,
-    fontSize: 12,
-    lineHeight: '18px',
-    color: 'var(--color-text-tertiary, #828282)',
+    fontSize: 13,
+    lineHeight: '19.2px',
+    color: 'var(--color-text-primary, #14141E)',
     letterSpacing: '-0.01px',
     whiteSpace: 'nowrap',
   };
@@ -70,8 +70,9 @@ export const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(({
             top: '50%',
             transform: 'translateY(-50%)',
             fontSize: 10,
+            lineHeight: '15.6px',
             color: '#FFFFFF',
-            fontWeight: 500,
+            fontWeight: 400,
           }}>
             {pctStr}
           </span>
@@ -90,9 +91,9 @@ export const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(({
 
   if (labelType === 'title') {
     return (
-      <div ref={ref} style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 6, ...style }} className={className} {...props}>
+      <div ref={ref} style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 8, ...style }} className={className} {...props}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
-          {label && <span style={{ ...labelStyle, color: 'var(--color-text-secondary, #49494A)', fontWeight: 500 }}>{label}</span>}
+          {label && <span style={labelStyle}>{label}</span>}
           {showPercent && <span style={labelStyle}>{pctStr}</span>}
         </div>
         {track}
@@ -102,32 +103,34 @@ export const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(({
 
   if (labelType === 'trailing') {
     return (
-      <div ref={ref} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 10, ...style }} className={className} {...props}>
+      <div ref={ref} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 12, ...style }} className={className} {...props}>
         <div style={{ flex: 1 }}>{track}</div>
-        {showPercent && <span style={{ ...labelStyle, flexShrink: 0 }}>{pctStr}</span>}
+        {showPercent && <span style={{ ...labelStyle, flexShrink: 0, textAlign: 'right', minWidth: 42 }}>{pctStr}</span>}
       </div>
     );
   }
 
   if (labelType === 'top-floating') {
     return (
-      <div ref={ref} style={{ width: '100%', paddingTop: 22, position: 'relative', ...style }} className={className} {...props}>
+      <div ref={ref} style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 8, ...style }} className={className} {...props}>
         {showPercent && (
-          <span style={{
-            ...labelStyle,
-            position: 'absolute',
-            top: 0,
-            left: `${pct}%`,
-            transform: 'translateX(-50%)',
-            fontSize: 11,
-            backgroundColor: color,
-            color: '#FFFFFF',
-            padding: '2px 6px',
-            borderRadius: 4,
-            fontWeight: 500,
-          }}>
-            {pctStr}
-          </span>
+          <div style={{ display: 'flex' }}>
+            <span style={{
+              fontFamily: 'Rubik, sans-serif',
+              fontWeight: 400,
+              fontSize: 10,
+              lineHeight: '15.6px',
+              color: 'var(--color-text-primary, #14141E)',
+              letterSpacing: '-0.01px',
+              whiteSpace: 'nowrap',
+              padding: '2px 6px',
+              borderRadius: 9999,
+              border: '0.5px solid var(--color-stroke-subtle, #D7D7D7)',
+              backgroundColor: 'var(--color-container-primary, #FFFFFF)',
+            }}>
+              {pctStr}
+            </span>
+          </div>
         )}
         {track}
       </div>
@@ -136,24 +139,26 @@ export const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(({
 
   if (labelType === 'bottom-floating') {
     return (
-      <div ref={ref} style={{ width: '100%', paddingBottom: 22, position: 'relative', ...style }} className={className} {...props}>
+      <div ref={ref} style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 8, ...style }} className={className} {...props}>
         {track}
         {showPercent && (
-          <span style={{
-            ...labelStyle,
-            position: 'absolute',
-            bottom: 0,
-            left: `${pct}%`,
-            transform: 'translateX(-50%)',
-            fontSize: 11,
-            backgroundColor: color,
-            color: '#FFFFFF',
-            padding: '2px 6px',
-            borderRadius: 4,
-            fontWeight: 500,
-          }}>
-            {pctStr}
-          </span>
+          <div style={{ display: 'flex' }}>
+            <span style={{
+              fontFamily: 'Rubik, sans-serif',
+              fontWeight: 400,
+              fontSize: 10,
+              lineHeight: '15.6px',
+              color: 'var(--color-text-primary, #14141E)',
+              letterSpacing: '-0.01px',
+              whiteSpace: 'nowrap',
+              padding: '2px 6px',
+              borderRadius: 9999,
+              border: '0.5px solid var(--color-stroke-subtle, #D7D7D7)',
+              backgroundColor: 'var(--color-container-primary, #FFFFFF)',
+            }}>
+              {pctStr}
+            </span>
+          </div>
         )}
       </div>
     );

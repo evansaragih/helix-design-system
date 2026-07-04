@@ -58,22 +58,22 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(({
 
   // Background
   let bg = 'transparent';
-  if (effectiveState === 'Hover') bg = 'var(--color-bg-hover, #EEEEEE)';
-  else if (effectiveState === 'Focus') bg = 'var(--color-bg-hover, #EEEEEE)';
+  if (effectiveState === 'Hover') bg = isDestructive ? 'var(--primitive-red-10, #FCA5A5)' : 'var(--color-status-brand-bg, #FEF2E9)';
+  else if (effectiveState === 'Focus') bg = isDestructive ? 'var(--primitive-red-10, #FCA5A5)' : 'var(--color-status-brand-bg, #FEF2E9)';
   else if (effectiveState === 'Pressed') bg = 'var(--color-stroke-default, #D7D7D7)';
-  else if (effectiveState === 'Selected') bg = isDestructive ? 'var(--primitive-red-0, #FEE2E2)' : 'var(--color-status-brand-bg, #FEF2E9)';
+  else if (effectiveState === 'Selected') bg = isDestructive ? 'var(--primitive-red-0, #FEE2E2)' : 'var(--color-brand-primary, #F57E20)';
 
   // Label color
   let labelColor = 'var(--color-text-primary, #14141E)';
   if (isDisabled) labelColor = 'var(--color-text-muted, #9F9F9F)';
-  else if (isDestructive) labelColor = 'var(--color-destructive, #DC2626)';
-  else if (effectiveState === 'Selected') labelColor = isDestructive ? 'var(--color-destructive, #DC2626)' : 'var(--color-brand-primary, #F57E20)';
+  else if (effectiveState === 'Selected' && !isDestructive) labelColor = 'var(--color-text-on-primary, #FFFFFF)';
+  else if (isDestructive) labelColor = 'var(--color-text-error, #EF4444)';
 
   // Icon / trailing color
   let iconColor = 'var(--color-text-tertiary, #828282)';
   if (isDisabled) iconColor = 'var(--color-text-muted, #9F9F9F)';
-  else if (isDestructive) iconColor = 'var(--color-destructive, #DC2626)';
-  else if (effectiveState === 'Selected') iconColor = isDestructive ? 'var(--color-destructive, #DC2626)' : 'var(--color-brand-primary, #F57E20)';
+  else if (effectiveState === 'Selected' && !isDestructive) iconColor = 'var(--color-text-on-primary, #FFFFFF)';
+  else if (isDestructive) iconColor = 'var(--color-text-error, #EF4444)';
 
   // Supporting text color
   let supportingColor = 'var(--color-text-tertiary, #828282)';
@@ -82,9 +82,9 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(({
   const isSmall = size === 'Small';
   const itemHeight = supportingText ? 'auto' : (isSmall ? '32px' : '40px');
   const verticalPad = supportingText ? (isSmall ? '6px' : '8px') : '0';
-  const fontSize = isSmall ? '13px' : '14px';
+  const fontSize = isSmall ? '13px' : '16px';
   const supportingFontSize = isSmall ? '11px' : '12px';
-  const iconSize = isSmall ? '16px' : '18px';
+  const iconSize = isSmall ? '16px' : '20px';
 
   const containerStyle: React.CSSProperties = {
     display: 'flex',

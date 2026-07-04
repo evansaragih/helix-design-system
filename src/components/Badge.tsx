@@ -67,7 +67,7 @@ const VARIANTS: Record<BadgeVariant, VariantTokens> = {
   },
   blue: {
     bg:   'var(--color-status-info-bg, #EBF2FE)',
-    text: 'var(--color-text-info, #014CC5)',
+    text: 'var(--color-text-info, #3B82F6)',
   },
   green: {
     bg:   'var(--color-status-success-bg, #E9F9EF)',

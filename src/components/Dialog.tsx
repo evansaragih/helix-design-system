@@ -58,7 +58,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(({
             transform: 'translate(-50%, -50%)',
             width: `min(${WIDTHS[size]}px, calc(100vw - 32px))`,
             backgroundColor: '#FFFFFF',
-            borderRadius: 'var(--radius-2xl, 16px)',
+            borderRadius: 'var(--radius-lg, 8px)',
             boxShadow: 'var(--shadow-md)',
             zIndex: 9999,
             outline: 'none',
@@ -82,7 +82,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(({
                   <RadixDialog.Title style={{
                     margin: 0,
                     fontFamily: 'Rubik, sans-serif',
-                    fontWeight: 600,
+                    fontWeight: 500,
                     fontSize: 16,
                     lineHeight: '24px',
                     color: 'var(--color-text-primary, #14141E)',
@@ -98,7 +98,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(({
                     fontWeight: 400,
                     fontSize: 13,
                     lineHeight: '19.2px',
-                    color: 'var(--color-text-tertiary, #828282)',
+                    color: 'var(--color-text-secondary, #49494A)',
                     letterSpacing: '-0.01px',
                   }}>
                     {description}
@@ -114,7 +114,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(({
                     width: 28,
                     height: 28,
                     borderRadius: 6,
-                    border: '1px solid var(--color-stroke-subtle, #EEEEEE)',
+                    border: 'none',
                     backgroundColor: 'transparent',
                     cursor: 'pointer',
                     color: 'var(--color-text-tertiary, #828282)',

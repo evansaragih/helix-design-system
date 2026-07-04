@@ -61,16 +61,15 @@ export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(({
     >
       {/* Icon container */}
       <div style={{
-        width: compact ? 56 : 72,
-        height: compact ? 56 : 72,
-        borderRadius: 16,
-        backgroundColor: 'var(--color-container-secondary, #F7F7F7)',
-        border: '1px solid var(--color-stroke-subtle, #EEEEEE)',
+        width: compact ? 32 : 40,
+        height: compact ? 32 : 40,
+        borderRadius: 'var(--radius-lg, 8px)',
+        backgroundColor: 'var(--color-status-brand-bg, #FEF2E9)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 20,
-        color: 'var(--color-text-tertiary, #828282)',
+        color: 'var(--color-brand-primary, #F57E20)',
       }}>
         {icon ?? <Icon size={compact ? 24 : 32} strokeWidth={1.5} />}
       </div>
@@ -78,8 +77,8 @@ export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(({
       {/* Title */}
       <h3 style={{
         margin: '0 0 8px',
-        fontFamily: 'var(--font-family-heading, Rubik, sans-serif)',
-        fontWeight: 600,
+        fontFamily: 'Rubik, sans-serif',
+        fontWeight: 500,
         fontSize: compact ? 14 : 16,
         lineHeight: compact ? '21px' : '24px',
         color: 'var(--color-text-primary, #14141E)',
@@ -94,8 +93,9 @@ export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(({
           margin: 0,
           fontFamily: 'Rubik, sans-serif',
           fontWeight: 400,
-          fontSize: compact ? 13 : 14,
-          lineHeight: '1.6',
+          fontSize: 13,
+          lineHeight: '19.2px',
+          letterSpacing: '-0.01px',
           color: 'var(--color-text-secondary, #49494A)',
           maxWidth: 380,
         }}>

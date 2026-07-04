@@ -80,36 +80,36 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
               disabled={current === 0}
               aria-label="Previous slide"
               style={{
-                position: 'absolute', left: 8, top: '50%', transform: 'translateY(-50%)',
+                position: 'absolute', left: 16, top: '50%', transform: 'translateY(-50%)',
                 width: 36, height: 36, borderRadius: '50%',
-                border: '1px solid var(--color-stroke-subtle, #EEEEEE)',
-                backgroundColor: '#FFFFFF',
-                boxShadow: '0px 2px 8px rgba(0,0,0,0.08)',
+                border: '1px solid var(--color-stroke-neutral-20, rgba(255,255,255,0.2))',
+                backgroundColor: 'var(--color-btn-invert, #59595A)',
+                backdropFilter: 'blur(2px)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 cursor: current === 0 ? 'not-allowed' : 'pointer',
                 opacity: current === 0 ? 0.4 : 1,
                 zIndex: 10,
               }}
             >
-              <ChevronLeft size={18} color="#14141E" />
+              <ChevronLeft size={14} color="#FFFFFF" />
             </button>
             <button
               onClick={next}
               disabled={current >= maxIndex}
               aria-label="Next slide"
               style={{
-                position: 'absolute', right: 8, top: '50%', transform: 'translateY(-50%)',
+                position: 'absolute', right: 16, top: '50%', transform: 'translateY(-50%)',
                 width: 36, height: 36, borderRadius: '50%',
-                border: '1px solid var(--color-stroke-subtle, #EEEEEE)',
-                backgroundColor: '#FFFFFF',
-                boxShadow: '0px 2px 8px rgba(0,0,0,0.08)',
+                border: '1px solid var(--color-stroke-neutral-20, rgba(255,255,255,0.2))',
+                backgroundColor: 'var(--color-btn-invert, #59595A)',
+                backdropFilter: 'blur(2px)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 cursor: current >= maxIndex ? 'not-allowed' : 'pointer',
                 opacity: current >= maxIndex ? 0.4 : 1,
                 zIndex: 10,
               }}
             >
-              <ChevronRight size={18} color="#14141E" />
+              <ChevronRight size={14} color="#FFFFFF" />
             </button>
           </>
         )}
@@ -124,14 +124,14 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
               onClick={() => setCurrent(i)}
               aria-label={`Go to slide ${i + 1}`}
               style={{
-                width: i === current ? 20 : 8,
-                height: 8,
-                borderRadius: 4,
+                width: i === current ? 40 : 12,
+                height: 12,
+                borderRadius: 'var(--radius-3xl, 24px)',
                 border: 'none',
                 cursor: 'pointer',
                 backgroundColor: i === current
                   ? 'var(--color-brand-primary, #F57E20)'
-                  : 'var(--color-stroke-subtle, #EEEEEE)',
+                  : 'var(--color-status-brand-bg, #FEF2E9)',
                 transition: 'width 0.3s ease, background-color 0.2s',
                 padding: 0,
               }}

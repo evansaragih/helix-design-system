@@ -45,7 +45,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(({
       className={className}
       style={{
         backgroundColor: 'var(--color-container-primary, #FFFFFF)',
-        borderRadius: 'var(--radius-2xl, 16px)',
+        borderRadius: 'var(--radius-lg, 8px)',
         border: bordered ? '1px solid var(--color-stroke-subtle, #EEEEEE)' : 'none',
         boxShadow: SHADOWS[elevation],
         overflow: 'hidden',
@@ -106,7 +106,7 @@ export const CardTitle = forwardRef<HTMLParagraphElement, React.HTMLAttributes<H
     <h3 ref={ref as React.Ref<HTMLHeadingElement>} style={{
       margin: 0,
       fontFamily: 'Rubik, sans-serif',
-      fontWeight: 600,
+      fontWeight: 500,
       fontSize: 16,
       lineHeight: '24px',
       color: 'var(--color-text-primary, #14141E)',
@@ -125,7 +125,7 @@ export const CardDescription = forwardRef<HTMLParagraphElement, React.HTMLAttrib
       fontWeight: 400,
       fontSize: 13,
       lineHeight: '19.2px',
-      color: 'var(--color-text-tertiary, #828282)',
+      color: 'var(--color-text-secondary, #49494A)',
       letterSpacing: '-0.01px',
       ...style,
     }} {...props}>{children}</p>

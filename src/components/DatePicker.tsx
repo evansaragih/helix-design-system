@@ -161,9 +161,9 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({
           position: 'absolute', top: 'calc(100% + 4px)', left: 0, zIndex: 300,
           backgroundColor: '#FFFFFF',
           border: '1px solid var(--color-stroke-subtle, #EEEEEE)',
-          borderRadius: 12,
+          borderRadius: 'var(--radius-md, 6px)',
           boxShadow: '0px 8px 24px rgba(0,0,0,0.10)',
-          padding: 16,
+          padding: 12,
           minWidth: 280,
         }}>
           {/* Month navigation */}
@@ -171,7 +171,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({
             <button onClick={prevMonth} style={{ padding: 4, border: 'none', background: 'none', cursor: 'pointer', borderRadius: 6, display: 'flex', alignItems: 'center', color: 'var(--color-text-secondary, #49494A)' }}>
               <ChevronLeft size={16} />
             </button>
-            <span style={{ fontFamily: 'Rubik, sans-serif', fontWeight: 600, fontSize: 14, color: 'var(--color-text-primary, #14141E)' }}>
+            <span style={{ fontFamily: 'Rubik, sans-serif', fontWeight: 400, fontSize: 13, letterSpacing: '-0.01px', color: 'var(--color-text-primary, #14141E)' }}>
               {MONTHS[month]} {year}
             </span>
             <button onClick={nextMonth} style={{ padding: 4, border: 'none', background: 'none', cursor: 'pointer', borderRadius: 6, display: 'flex', alignItems: 'center', color: 'var(--color-text-secondary, #49494A)' }}>
@@ -182,7 +182,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({
           {/* Day headers */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', marginBottom: 4 }}>
             {DAYS.map(d => (
-              <div key={d} style={{ textAlign: 'center', fontFamily: 'Rubik, sans-serif', fontWeight: 500, fontSize: 11, color: 'var(--color-text-tertiary, #828282)', padding: '4px 0' }}>
+              <div key={d} style={{ textAlign: 'center', fontFamily: 'Rubik, sans-serif', fontWeight: 400, fontSize: 13, letterSpacing: '-0.01px', color: 'var(--color-text-tertiary, #828282)', padding: '4px 0' }}>
                 {d}
               </div>
             ))}
@@ -209,20 +209,21 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(({
                   style={{
                     width: '100%', aspectRatio: '1',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    border: today && !isActive ? '1px solid var(--color-brand-primary, #F57E20)' : 'none',
-                    borderRadius: 8,
+                    border: 'none',
+                    borderRadius: 'var(--radius-md, 6px)',
                     backgroundColor: isActive
                       ? 'var(--color-brand-primary, #F57E20)'
-                      : isInRange ? 'var(--color-brand-primary-ghost-hover, #FEF2E9)' : 'transparent',
+                      : (isInRange || (today && !isActive)) ? 'var(--color-status-brand-bg, #FEF2E9)' : 'transparent',
                     color: isActive ? '#FFFFFF' : isDis ? '#D7D7D7' : 'var(--color-text-primary, #14141E)',
                     cursor: isDis ? 'not-allowed' : 'pointer',
                     fontFamily: 'Rubik, sans-serif',
                     fontSize: 13,
-                    fontWeight: today ? 600 : 400,
+                    fontWeight: 400,
+                    letterSpacing: '-0.01px',
                     transition: 'background-color 0.15s',
                   }}
-                  onMouseEnter={e => { if (!isActive && !isDis) e.currentTarget.style.backgroundColor = '#F7F7F7'; }}
-                  onMouseLeave={e => { if (!isActive && !isInRange) e.currentTarget.style.backgroundColor = 'transparent'; }}
+                  onMouseEnter={e => { if (!isActive && !isDis) e.currentTarget.style.backgroundColor = 'var(--color-status-brand-bg, #FEF2E9)'; }}
+                  onMouseLeave={e => { if (!isActive && !isInRange && !today) e.currentTarget.style.backgroundColor = 'transparent'; }}
                 >
                   {day}
                 </button>

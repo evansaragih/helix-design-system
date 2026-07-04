@@ -61,6 +61,9 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(({
   const brandColor = isWhite ? '#FFFFFF' : 'var(--color-brand-primary, #F57E20)';
   const inactiveColor = isWhite ? 'rgba(255,255,255,0.7)' : 'var(--color-text-tertiary, #828282)';
   const disabledColor = isWhite ? 'rgba(255,255,255,0.4)' : 'var(--color-text-muted, #9F9F9F)';
+  // Primary (filled) style: selected tab is a solid pill — inverted from the "line" style's colored text.
+  const primaryActiveBg = isWhite ? '#FFFFFF' : 'var(--color-brand-primary, #F57E20)';
+  const primaryActiveText = isWhite ? 'var(--color-text-secondary, #49494A)' : '#FFFFFF';
 
   return (
     <RadixTabs.Root
@@ -148,9 +151,9 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(({
           instead wrap content with Radix which applies data-state */}
       <style>{`
         [data-radix-tabs-trigger][data-state="active"] {
-          color: ${brandColor} !important;
-          background-color: ${tabStyle === 'primary' ? (isWhite ? 'rgba(255,255,255,0.25)' : '#FFFFFF') : 'transparent'} !important;
-          box-shadow: ${tabStyle === 'primary' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none'} !important;
+          color: ${tabStyle === 'primary' ? primaryActiveText : brandColor} !important;
+          background-color: ${tabStyle === 'primary' ? primaryActiveBg : 'transparent'} !important;
+          box-shadow: ${tabStyle === 'primary' ? '0 1px 1px rgba(0,0,0,0.05)' : 'none'} !important;
         }
         [data-radix-tabs-trigger][data-state="active"]::after {
           content: ${tabStyle === 'line' ? '""' : 'none'};

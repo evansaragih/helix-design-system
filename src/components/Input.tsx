@@ -32,9 +32,9 @@ interface SizeConfig {
 }
 
 const SIZE: Record<InputSize, SizeConfig> = {
-  xs: { height: 32, radius: 6,  slotHeight: 28, fontSize: 13, inputPx: 10, labelGap: 4, dividerColor: 'var(--color-stroke-subtle, #d7d7d7)' },
-  sm: { height: 38, radius: 6,  slotHeight: 28, fontSize: 13, inputPx: 12, labelGap: 4, dividerColor: 'var(--color-stroke-subtle, #d7d7d7)' },
-  md: { height: 42, radius: 8,  slotHeight: 36, fontSize: 13, inputPx: 12, labelGap: 4, dividerColor: 'var(--color-stroke-subtle, #d7d7d7)' },
+  xs: { height: 32, radius: 6,  slotHeight: 28, fontSize: 13, inputPx: 10, labelGap: 8, dividerColor: 'var(--color-stroke-subtle, #d7d7d7)' },
+  sm: { height: 38, radius: 6,  slotHeight: 28, fontSize: 13, inputPx: 12, labelGap: 8, dividerColor: 'var(--color-stroke-subtle, #d7d7d7)' },
+  md: { height: 42, radius: 8,  slotHeight: 36, fontSize: 13, inputPx: 12, labelGap: 8, dividerColor: 'var(--color-stroke-subtle, #d7d7d7)' },
   lg: { height: 48, radius: 8,  slotHeight: 40, fontSize: 13, inputPx: 16, labelGap: 8, dividerColor: 'var(--color-stroke-default, #bababa)' },
 };
 

@@ -39,10 +39,10 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(({
     onCheckedChange?.(next);
   };
 
-  const trackW = size === 'md' ? 44 : 36;
-  const trackH = size === 'md' ? 24 : 20;
-  const thumbSize = size === 'md' ? 18 : 14;
-  const thumbOffset = size === 'md' ? 3 : 3;
+  const trackW = size === 'md' ? 44 : 28;
+  const trackH = size === 'md' ? 24 : 16;
+  const thumbSize = size === 'md' ? 18 : 12;
+  const thumbOffset = size === 'md' ? 3 : 2;
   const thumbTravel = trackW - thumbSize - thumbOffset * 2;
 
   const trackBg = disabled

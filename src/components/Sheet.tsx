@@ -17,8 +17,8 @@ export interface SheetProps {
 }
 
 const SIDE_STYLES: Record<SheetSide, React.CSSProperties> = {
-  right:  { right: 0, top: 0, bottom: 0, width: 400 },
-  left:   { left: 0, top: 0, bottom: 0, width: 400 },
+  right:  { right: 0, top: 0, bottom: 0, width: 384 },
+  left:   { left: 0, top: 0, bottom: 0, width: 384 },
   top:    { top: 0, left: 0, right: 0, height: 320 },
   bottom: { bottom: 0, left: 0, right: 0, height: 320 },
 };
@@ -74,11 +74,7 @@ export const Sheet = forwardRef<HTMLDivElement, SheetProps>(({
     else sideStyle.height = size;
   }
 
-  const borderRadius =
-    side === 'right'  ? '16px 0 0 16px' :
-    side === 'left'   ? '0 16px 16px 0' :
-    side === 'top'    ? '0 0 16px 16px' :
-                        '16px 16px 0 0';
+  const borderRadius = 0;
 
   return (
     <div
@@ -121,9 +117,9 @@ export const Sheet = forwardRef<HTMLDivElement, SheetProps>(({
               <h2 id="sheet-title" style={{
                 margin: 0,
                 fontFamily: 'var(--font-family-heading, Rubik, sans-serif)',
-                fontWeight: 600,
-                fontSize: 18,
-                lineHeight: '27px',
+                fontWeight: 500,
+                fontSize: 16,
+                lineHeight: '24px',
                 color: 'var(--color-text-primary, #14141E)',
               }}>
                 {title}
@@ -134,8 +130,8 @@ export const Sheet = forwardRef<HTMLDivElement, SheetProps>(({
                 margin: title ? '4px 0 0' : 0,
                 fontFamily: 'Rubik, sans-serif',
                 fontWeight: 400,
-                fontSize: 14,
-                lineHeight: '21px',
+                fontSize: 13,
+                lineHeight: '19.2px',
                 color: 'var(--color-text-secondary, #49494A)',
               }}>
                 {description}
@@ -148,8 +144,7 @@ export const Sheet = forwardRef<HTMLDivElement, SheetProps>(({
             style={{
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               width: 32, height: 32, flexShrink: 0,
-              border: '1px solid var(--color-stroke-subtle, #EEEEEE)',
-              borderRadius: 8,
+              border: 'none',
               backgroundColor: 'transparent',
               cursor: 'pointer',
               color: 'var(--color-text-secondary, #49494A)',

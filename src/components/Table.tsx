@@ -38,7 +38,7 @@ export function Table<T = Record<string, unknown>>({
   ...props
 }: TableProps<T>) {
   const cellPy = size === 'sm' ? 8 : 12;
-  const cellPx = 14;
+  const cellPx = 16;
   const fontSize = size === 'sm' ? 12 : 13;
 
   return (
@@ -66,7 +66,7 @@ export function Table<T = Record<string, unknown>>({
                   fontWeight: 500,
                   fontSize,
                   lineHeight: '19.2px',
-                  color: 'var(--color-text-secondary, #49494A)',
+                  color: 'var(--color-text-primary, #14141E)',
                   letterSpacing: '-0.01px',
                   borderBottom: '1px solid var(--color-stroke-subtle, #EEEEEE)',
                   borderRight: cellBorders && ci < columns.length - 1
@@ -105,7 +105,7 @@ export function Table<T = Record<string, unknown>>({
                   transition: hoverable ? 'background-color 0.1s' : 'none',
                 }}
                 onMouseEnter={hoverable ? (e) => {
-                  (e.currentTarget as HTMLTableRowElement).style.backgroundColor = 'var(--color-bg-hover, #EEEEEE)';
+                  (e.currentTarget as HTMLTableRowElement).style.backgroundColor = 'var(--color-status-brand-bg, #FEF2E9)';
                 } : undefined}
                 onMouseLeave={hoverable ? (e) => {
                   (e.currentTarget as HTMLTableRowElement).style.backgroundColor =
@@ -122,7 +122,7 @@ export function Table<T = Record<string, unknown>>({
                       fontWeight: 400,
                       fontSize,
                       lineHeight: '19.2px',
-                      color: 'var(--color-text-primary, #14141E)',
+                      color: 'var(--color-text-secondary, #49494A)',
                       letterSpacing: '-0.01px',
                       borderBottom: ri < data.length - 1
                         ? '1px solid var(--color-stroke-subtle, #EEEEEE)'
